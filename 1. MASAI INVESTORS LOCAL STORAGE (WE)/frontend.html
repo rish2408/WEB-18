@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #header
+        {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: auto;
+            width: 600px;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(4,auto);
+            gap: 20px;
+            /* border: 1px solid red; */
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 30px;
+            margin-bottom: 25px;
+        }
+        p+img
+        {
+            height: 50px;
+            margin-top: -10px;
+        }
+        #container>div>img
+        {
+            border-radius: 10px;
+        }
+        #container>div>p
+        {
+            color: gray;
+            margin-top: -15px;
+        }
+        #container>div
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Strategic Investors</h1>
+      </div>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+
+<script>
+    var investorArr = JSON.parse(localStorage.getItem("investorsData"));
+    console.log(investorArr)
+
+    investorArr.forEach(function(element)
+    {
+        var box = document.createElement("div");
+
+        var avatar = document.createElement("img");
+        avatar.setAttribute("src",element.investorImg)
+
+        var name = document.createElement("h2")
+        name.innerText = element.investorName;
+
+        var role = document.createElement("p")
+        role.innerText = element.investorRole ;
+
+        var logo = document.createElement("img")
+        logo.setAttribute("src",element.investorCompanyLogo)
+
+        box.append(avatar,name,role,logo)
+        document.querySelector("#container").append(box)
+    })
+</script>
